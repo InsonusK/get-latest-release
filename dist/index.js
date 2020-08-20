@@ -1478,37 +1478,45 @@ const core = __importStar(__webpack_require__(925));
 const github = __importStar(__webpack_require__(130));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
+        // Get input values
         const myToken = core.getInput('myToken');
         const excludeReleaseTypes = core.getInput('exclude_types').split('|');
         const topList = +core.getInput('view_top');
+        // Set parameters
         const excludeDraft = excludeReleaseTypes.some(f => f === "draft");
         const excludePrerelease = excludeReleaseTypes.some(f => f === "prerelease");
         const excludeRelease = excludeReleaseTypes.some(f => f === "release");
         const octokit = github.getOctokit(myToken);
-        let repoList = yield octokit.repos.listReleases({
+        // Load release list from GitHub
+        let releaseList = yield octokit.repos.listReleases({
             repo: github.context.repo.repo,
             owner: github.context.repo.owner,
             per_page: topList,
             page: 1
         });
-        for (let i = 0; i < repoList.data.length; i++) {
-            let repoListElement = repoList.data[i];
-            if ((!excludeDraft && repoListElement.draft) ||
-                (!excludePrerelease && repoListElement.prerelease) ||
-                (!excludeRelease && !repoListElement.prerelease && !repoListElement.draft)) {
-                setOutput(repoListElement);
+        // Search release list for latest required release
+        for (let i = 0; i < releaseList.data.length; i++) {
+            let releaseListElement = releaseList.data[i];
+            if ((!excludeDraft && releaseListElement.draft) ||
+                (!excludePrerelease && releaseListElement.prerelease) ||
+                (!excludeRelease && !releaseListElement.prerelease && !releaseListElement.draft)) {
+                setOutput(releaseListElement);
                 break;
             }
         }
     });
 }
-function setOutput(element) {
-    core.setOutput('id', element.id);
-    core.setOutput('tag_name', element.tag_name);
-    core.setOutput('created_at', element.created_at);
-    core.setOutput('draft', element.draft);
-    core.setOutput('prerelease', element.prerelease);
-    core.setOutput('release', !element.prerelease && !element.draft);
+/**
+ * Setup action output values
+ * @param release - founded release
+ */
+function setOutput(release) {
+    core.setOutput('id', release.id);
+    core.setOutput('tag_name', release.tag_name);
+    core.setOutput('created_at', release.created_at);
+    core.setOutput('draft', release.draft);
+    core.setOutput('prerelease', release.prerelease);
+    core.setOutput('release', !release.prerelease && !release.draft);
 }
 run();
 
