@@ -1,4 +1,4 @@
-name: "Get-latest-release"
+name: "Get latest release of repository"
 
 description: "Get latest release including draft and prerelease. Return information about release"
 inputs:
@@ -28,3 +28,6 @@ outputs:
 runs:
   using: "node12"
   main: "dist/index.js"
+branding:
+  icon: 'tag'
+  color: 'purple'
