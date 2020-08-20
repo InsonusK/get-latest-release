@@ -1,4 +1,4 @@
-name: JS Actions
+name: Test action from marketplace
 
 on: [push, release]
 
