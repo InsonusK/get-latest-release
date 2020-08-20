@@ -1,0 +1,172 @@
+name: JS Actions
+
+on: [push, release]
+
+jobs:
+  get_draft:
+    name: "Get draft release from all releases"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: "call action"
+        id: last_release
+        uses: InsonusK/get-latest-release
+        with:
+          myToken: ${{ github.token }}
+          exclude_types: "release"
+      - name: "Print result"
+        run: |
+          echo "id: ${{ steps.last_release.outputs.id }}"
+          echo "tag_name: ${{ steps.last_release.outputs.tag_name }}"
+          echo "created_at: ${{ steps.last_release.outputs.created_atd }}"
+          echo "draft: ${{ steps.last_release.outputs.draft }}"
+          echo "prerelease: ${{ steps.last_release.outputs.prerelease }}"
+      - name: "Assert"
+        run: |
+          if [[ "${{ steps.last_release.outputs.id }}" == "" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+          if [[ "${{ steps.last_release.outputs.draft }}" != "true" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+          if [[ "${{ steps.last_release.outputs.prerelease }}" != "false" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+          if [[ "${{ steps.last_release.outputs.release }}" != "false" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+
+  get_prerelease:
+    name: "Get prerelease release from all releases"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: "call action"
+        id: last_release
+        uses: InsonusK/get-latest-release
+        with:
+          myToken: ${{ github.token }}
+          exclude_types: "draft|release"
+      - name: "Print result"
+        run: |
+          echo "id: ${{ steps.last_release.outputs.id }}"
+          echo "tag_name: ${{ steps.last_release.outputs.tag_name }}"
+          echo "created_at: ${{ steps.last_release.outputs.created_atd }}"
+          echo "draft: ${{ steps.last_release.outputs.draft }}"
+          echo "prerelease: ${{ steps.last_release.outputs.prerelease }}"
+      - name: "Assert"
+        run: |
+          if [[ "${{ steps.last_release.outputs.id }}" == "" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+          if [[ "${{ steps.last_release.outputs.draft }}" != "false" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+          if [[ "${{ steps.last_release.outputs.prerelease }}" != "true" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+          if [[ "${{ steps.last_release.outputs.release }}" != "false" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+
+  get_release:
+    name: "Get release release from all releases"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: "call action"
+        id: last_release
+        uses: InsonusK/get-latest-release
+        with:
+          myToken: ${{ github.token }}
+      - name: "Print result"
+        run: |
+          echo "id: ${{ steps.last_release.outputs.id }}"
+          echo "tag_name: ${{ steps.last_release.outputs.tag_name }}"
+          echo "created_at: ${{ steps.last_release.outputs.created_atd }}"
+          echo "draft: ${{ steps.last_release.outputs.draft }}"
+          echo "prerelease: ${{ steps.last_release.outputs.prerelease }}"
+      - name: "Assert"
+        run: |
+          if [[ "${{ steps.last_release.outputs.id }}" == "" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+          if [[ "${{ steps.last_release.outputs.draft }}" != "false" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+          if [[ "${{ steps.last_release.outputs.prerelease }}" != "false" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+          if [[ "${{ steps.last_release.outputs.release }}" != "true" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+
+  get_zero_because_of_top_list_limit:
+    name: "Get no release because draft is canceled and limit is set to 1"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: "call action"
+        id: last_release
+        uses: InsonusK/get-latest-release
+        with:
+          myToken: ${{ github.token }}
+          exclude_types: "release"
+          view_top: 1
+      - name: "Print result"
+        run: |
+          echo "id: ${{ steps.last_release.outputs.id }}"
+          echo "tag_name: ${{ steps.last_release.outputs.tag_name }}"
+          echo "created_at: ${{ steps.last_release.outputs.created_atd }}"
+          echo "draft: ${{ steps.last_release.outputs.draft }}"
+          echo "prerelease: ${{ steps.last_release.outputs.prerelease }}"
+      - name: "Assert"
+        run: |
+          if [[ "${{ steps.last_release.outputs.id }}" != "" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+          if [[ "${{ steps.last_release.outputs.draft }}" != "" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+          if [[ "${{ steps.last_release.outputs.prerelease }}" != "" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+          if [[ "${{ steps.last_release.outputs.release }}" != "" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
