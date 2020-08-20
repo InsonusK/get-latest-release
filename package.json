@@ -1,0 +1,29 @@
+{
+  "name": "github-actions-get-latest-release",
+  "version": "1.0.0",
+  "description": "Get latest release, includes draft release",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/InsonusK/github-actions-get-latest-release.git"
+  },
+  "keywords": [
+    "github-actions",
+    "release",
+    "draft"
+  ],
+  "author": "InsonusK",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/InsonusK/github-actions-get-latest-release/issues"
+  },
+  "homepage": "https://github.com/InsonusK/github-actions-get-latest-release#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^4.0.0",
+    "@tsconfig/recommended": "^1.0.1"
+  }
+}

@@ -1,0 +1,28 @@
+name: "toolkit test"
+
+description: "js action that use github toolkit"
+inputs:
+  myToken:
+    description: "GitHub Token"
+    required: true
+  exclude_types:
+    description: "Exclude release type (example: draft|prerelease)"
+    required: false
+  view_top:
+    description: "View top releases to find release"
+    required: false
+    default: 100
+outputs:
+  id:
+    description: 'Id of the release'
+  tag_name:
+    description: 'Tag of the release'
+  created_at:
+    description: 'Creation date of the release'
+  draft:
+    description: 'Release is draft'
+  prerelease:
+    description: 'Release is prerelease'
+runs:
+  using: "node12"
+  main: "dist/index.js"
