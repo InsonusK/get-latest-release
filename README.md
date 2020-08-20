@@ -1,6 +1,8 @@
 # get-latest-release
 Get latest release including draft and prerelease. Return information about release.
 
+<em>Difference to other actions which returns latest release is that, this action get access to hiden draft releases.</em>
+
 ## Inputs
 
 ### `myToken`
