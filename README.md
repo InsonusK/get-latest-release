@@ -43,7 +43,7 @@ steps:
   - uses: actions/checkout@v1
   - name: "call action"
     id: last_release
-    uses: InsonusK/get-latest-release
+    uses: InsonusK/get-latest-release@v1.0
     with:
       myToken: ${{ github.token }}
       exclude_types: "release"
