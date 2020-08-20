@@ -1,4 +1,4 @@
-name: "Get latest release"
+name: "Get-latest-release"
 
 description: "Get latest release including draft and prerelease. Return information about release"
 inputs:
