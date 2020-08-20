@@ -1,5 +1,5 @@
 # github-actions-get-latest-release
-Action get latest release including draft and prerelease. Return information about release
+Get latest release including draft and prerelease. Return information about release.
 
 ## Inputs
 
