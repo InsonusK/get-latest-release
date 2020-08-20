@@ -23,6 +23,8 @@ outputs:
     description: 'Release is draft'
   prerelease:
     description: 'Release is prerelease'
+  release:
+    description: 'Release is production release'
 runs:
   using: "node12"
   main: "dist/index.js"

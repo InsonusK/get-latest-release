@@ -39,6 +39,11 @@ jobs:
             echo "Wrong release type"
             exit 4
           fi
+          if [[ "${{ steps.last_release.outputs.release }}" != "false" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
 
   get_prerelease:
     name: "Get prerelease release from all releases"
@@ -72,6 +77,11 @@ jobs:
             exit 4
           fi
           if [[ "${{ steps.last_release.outputs.prerelease }}" != "true" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+          if [[ "${{ steps.last_release.outputs.release }}" != "false" ]];
           then
             echo "Wrong release type"
             exit 4
@@ -112,6 +122,11 @@ jobs:
             echo "Wrong release type"
             exit 4
           fi
+          if [[ "${{ steps.last_release.outputs.release }}" != "true" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
 
   get_zero_because_of_top_list_limit:
     name: "Get no release because draft is canceled and limit is set to 1"
@@ -146,6 +161,11 @@ jobs:
             exit 4
           fi
           if [[ "${{ steps.last_release.outputs.prerelease }}" != "" ]];
+          then
+            echo "Wrong release type"
+            exit 4
+          fi
+          if [[ "${{ steps.last_release.outputs.release }}" != "" ]];
           then
             echo "Wrong release type"
             exit 4

@@ -23,19 +23,20 @@ async function run(): Promise<void> {
         let repoListElement = repoList.data[i];
         if ((!excludeDraft && repoListElement.draft) ||
             (!excludePrerelease && repoListElement.prerelease) ||
-            (!excludeRelease && !repoListElement.prerelease && !repoListElement.draft) ){
+            (!excludeRelease && !repoListElement.prerelease && !repoListElement.draft)) {
             setOutput(repoListElement);
             break;
         }
     }
 }
 
-function setOutput(element: any): void{
+function setOutput(element: { id: number, tag_name: string, created_at: string, draft: boolean, prerelease: boolean }): void {
     core.setOutput('id', element.id);
     core.setOutput('tag_name', element.tag_name);
     core.setOutput('created_at', element.created_at);
     core.setOutput('draft', element.draft);
     core.setOutput('prerelease', element.prerelease);
+    core.setOutput('release', !element.prerelease && !element.draft);
 }
 
 run();
