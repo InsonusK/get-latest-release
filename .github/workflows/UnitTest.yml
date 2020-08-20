@@ -14,6 +14,7 @@ jobs:
         uses: ./
         with:
           myToken: ${{ github.token }}
+          exclude_types: "release"
       - name: "Print result"
         run: |
           echo "id: ${{ steps.last_release.outputs.id }}"
@@ -50,7 +51,7 @@ jobs:
         uses: ./
         with:
           myToken: ${{ github.token }}
-          exclude_types: "draft"
+          exclude_types: "draft|release"
       - name: "Print result"
         run: |
           echo "id: ${{ steps.last_release.outputs.id }}"
@@ -87,7 +88,6 @@ jobs:
         uses: ./
         with:
           myToken: ${{ github.token }}
-          exclude_types: "draft|prerelease"
       - name: "Print result"
         run: |
           echo "id: ${{ steps.last_release.outputs.id }}"
@@ -124,7 +124,7 @@ jobs:
         uses: ./
         with:
           myToken: ${{ github.token }}
-          exclude_types: "draft"
+          exclude_types: "release"
           view_top: 1
       - name: "Print result"
         run: |
