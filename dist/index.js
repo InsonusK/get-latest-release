@@ -1508,6 +1508,7 @@ function setOutput(element) {
     core.setOutput('created_at', element.created_at);
     core.setOutput('draft', element.draft);
     core.setOutput('prerelease', element.prerelease);
+    core.setOutput('release', !element.prerelease && !element.draft);
 }
 run();
 
