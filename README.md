@@ -1,4 +1,4 @@
-# github-actions-get-latest-release
+# get-latest-release
 Get latest release including draft and prerelease. Return information about release.
 
 ## Inputs
@@ -43,7 +43,7 @@ steps:
   - uses: actions/checkout@v1
   - name: "call action"
     id: last_release
-    uses: InsonusK/get-latest-release@v1.0
+    uses: InsonusK/get-latest-release
     with:
       myToken: ${{ github.token }}
       exclude_types: "release"
