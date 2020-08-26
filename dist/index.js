@@ -1495,12 +1495,18 @@ function run() {
             page: 1
         });
         // Search release list for latest required release
+        if (core.isDebug()) {
+            core.debug(`Found ${releaseList.data.length} releases`);
+            releaseList.data.forEach((el) => WriteDebug(el));
+        }
         for (let i = 0; i < releaseList.data.length; i++) {
             let releaseListElement = releaseList.data[i];
             if ((!excludeDraft && releaseListElement.draft) ||
                 (!excludePrerelease && releaseListElement.prerelease) ||
                 (!excludeRelease && !releaseListElement.prerelease && !releaseListElement.draft)) {
                 setOutput(releaseListElement);
+                core.debug("Chosen:");
+                WriteDebug(releaseListElement);
                 break;
             }
         }
@@ -1517,6 +1523,18 @@ function setOutput(release) {
     core.setOutput('draft', release.draft);
     core.setOutput('prerelease', release.prerelease);
     core.setOutput('release', !release.prerelease && !release.draft);
+}
+/**
+ * Write debug
+ * @param release - founded release
+ */
+function WriteDebug(release) {
+    core.debug(`name: ${release.name}`);
+    core.debug(`id: ${release.id}`);
+    core.debug(`tag_name: ${release.tag_name}`);
+    core.debug(`created_at: ${release.created_at}`);
+    core.debug(`draft: ${release.draft}`);
+    core.debug(`prerelease: ${release.prerelease}`);
 }
 run();
 
