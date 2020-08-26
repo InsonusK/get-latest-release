@@ -1504,9 +1504,8 @@ function run() {
             if ((!excludeDraft && releaseListElement.draft) ||
                 (!excludePrerelease && releaseListElement.prerelease) ||
                 (!excludeRelease && !releaseListElement.prerelease && !releaseListElement.draft)) {
+                core.debug(`Chosen: ${releaseListElement.id}`);
                 setOutput(releaseListElement);
-                core.debug("Chosen:");
-                WriteDebug(releaseListElement);
                 break;
             }
         }
@@ -1529,8 +1528,8 @@ function setOutput(release) {
  * @param release - founded release
  */
 function WriteDebug(release) {
-    core.debug(`name: ${release.name}`);
     core.debug(`id: ${release.id}`);
+    core.debug(`name: ${release.name}`);
     core.debug(`tag_name: ${release.tag_name}`);
     core.debug(`created_at: ${release.created_at}`);
     core.debug(`draft: ${release.draft}`);
