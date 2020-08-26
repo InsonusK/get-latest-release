@@ -23,6 +23,10 @@ Numbers of releases which will be searched. Default value `100`.
 
 Founded release Id
 
+### `name`
+
+Founded release name
+
 ### `tag_name`
 
 Founded release tag
@@ -53,6 +57,7 @@ steps:
   - name: "Print result"
     run: |
       echo "id: ${{ steps.last_release.outputs.id }}"
+      echo "name: ${{ steps.last_release.outputs.name }}"
       echo "tag_name: ${{ steps.last_release.outputs.tag_name }}"
       echo "created_at: ${{ steps.last_release.outputs.created_atd }}"
       echo "draft: ${{ steps.last_release.outputs.draft }}"

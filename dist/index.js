@@ -1517,6 +1517,7 @@ function run() {
  */
 function setOutput(release) {
     core.setOutput('id', release.id);
+    core.setOutput('name', release.id);
     core.setOutput('tag_name', release.tag_name);
     core.setOutput('created_at', release.created_at);
     core.setOutput('draft', release.draft);
