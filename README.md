@@ -59,7 +59,7 @@ steps:
       echo "id: ${{ steps.last_release.outputs.id }}"
       echo "name: ${{ steps.last_release.outputs.name }}"
       echo "tag_name: ${{ steps.last_release.outputs.tag_name }}"
-      echo "created_at: ${{ steps.last_release.outputs.created_atd }}"
+      echo "created_at: ${{ steps.last_release.outputs.created_at }}"
       echo "draft: ${{ steps.last_release.outputs.draft }}"
       echo "prerelease: ${{ steps.last_release.outputs.prerelease }}"
 ```
