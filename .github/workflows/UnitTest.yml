@@ -26,22 +26,22 @@ jobs:
         run: |
           if [[ "${{ steps.last_release.outputs.id }}" == "" ]];
           then
-            echo "Wrong release type"
+            echo "Expected draft release not found"
             exit 4
           fi
           if [[ "${{ steps.last_release.outputs.draft }}" != "true" ]];
           then
-            echo "Wrong release type"
+            echo "Founded release has wrong draft status"
             exit 4
           fi
           if [[ "${{ steps.last_release.outputs.prerelease }}" != "false" ]];
           then
-            echo "Wrong release type"
+            echo "Founded release has wrong prerelease status"
             exit 4
           fi
           if [[ "${{ steps.last_release.outputs.release }}" != "false" ]];
           then
-            echo "Wrong release type"
+            echo "Founded release has wrong release status"
             exit 4
           fi
 
@@ -68,22 +68,22 @@ jobs:
         run: |
           if [[ "${{ steps.last_release.outputs.id }}" == "" ]];
           then
-            echo "Wrong release type"
+            echo "Expected prerelease not found"
             exit 4
           fi
           if [[ "${{ steps.last_release.outputs.draft }}" != "false" ]];
           then
-            echo "Wrong release type"
+            echo "Founded release has wrong draft status"
             exit 4
           fi
           if [[ "${{ steps.last_release.outputs.prerelease }}" != "true" ]];
           then
-            echo "Wrong release type"
+            echo "Founded release has wrong prerelease status"
             exit 4
           fi
           if [[ "${{ steps.last_release.outputs.release }}" != "false" ]];
           then
-            echo "Wrong release type"
+            echo "Founded release has wrong release status"
             exit 4
           fi
 
@@ -109,22 +109,22 @@ jobs:
         run: |
           if [[ "${{ steps.last_release.outputs.id }}" == "" ]];
           then
-            echo "Wrong release type"
+            echo "Expected released release not found"
             exit 4
           fi
           if [[ "${{ steps.last_release.outputs.draft }}" != "false" ]];
           then
-            echo "Wrong release type"
+            echo "Founded release has wrong draft status"
             exit 4
           fi
           if [[ "${{ steps.last_release.outputs.prerelease }}" != "false" ]];
           then
-            echo "Wrong release type"
+            echo "Founded release has wrong prerelease status"
             exit 4
           fi
           if [[ "${{ steps.last_release.outputs.release }}" != "true" ]];
           then
-            echo "Wrong release type"
+            echo "Founded release has wrong release status"
             exit 4
           fi
 
@@ -152,21 +152,21 @@ jobs:
         run: |
           if [[ "${{ steps.last_release.outputs.id }}" != "" ]];
           then
-            echo "Wrong release type"
+            echo "Expected 0 value has not been recieved"
             exit 4
           fi
           if [[ "${{ steps.last_release.outputs.draft }}" != "" ]];
           then
-            echo "Wrong release type"
+            echo "Founded release has wrong draft status"
             exit 4
           fi
           if [[ "${{ steps.last_release.outputs.prerelease }}" != "" ]];
           then
-            echo "Wrong release type"
+            echo "Founded release has wrong prerelease status"
             exit 4
           fi
           if [[ "${{ steps.last_release.outputs.release }}" != "" ]];
           then
-            echo "Wrong release type"
+            echo "Founded release has wrong release status"
             exit 4
           fi
