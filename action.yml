@@ -32,7 +32,7 @@ outputs:
   html_url:
     description: 'HTML URL to release'  
 runs:
-  using: "node18"
+  using: "node16"
   main: "dist/index.js"
 branding:
   icon: 'tag'
