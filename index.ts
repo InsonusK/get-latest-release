@@ -47,14 +47,16 @@ async function run(): Promise<void> {
  * Setup action output values
  * @param release - founded release
  */
-function setOutput(release: { id: number, tag_name: string, created_at: string, draft: boolean, prerelease: boolean }): void {
+function setOutput(release: components["schemas"]["release"]): void {
     core.setOutput('id', release.id);
-    core.setOutput('name', release.id);
+    core.setOutput('name', release.name);
     core.setOutput('tag_name', release.tag_name);
     core.setOutput('created_at', release.created_at);
     core.setOutput('draft', release.draft);
     core.setOutput('prerelease', release.prerelease);
     core.setOutput('release', !release.prerelease && !release.draft);
+    core.setOutput('url', release.url);
+    core.setOutput('html_url', release.html_url);
 }
 
 /**
@@ -68,6 +70,8 @@ function WriteDebug(release: components["schemas"]["release"]): void {
     core.debug(`created_at: ${release.created_at}`);
     core.debug(`draft: ${release.draft}`);
     core.debug(`prerelease: ${release.prerelease}`);
+    core.debug(`url: ${release.url}`)
+    core.debug(`html_url: ${release.html_url}`)
 }
 
 run();

@@ -43,6 +43,14 @@ Founded release draft type flag (boolean: `true`, `false`).
 
 Founded release prerelease type flag (boolean: `true`, `false`).
 
+### `url`
+
+API URL to release
+
+### `html_url`
+
+URL to HTML page of release
+
 ## Example usage
 ```yaml
 steps:
@@ -62,4 +70,6 @@ steps:
       echo "created_at: ${{ steps.last_release.outputs.created_at }}"
       echo "draft: ${{ steps.last_release.outputs.draft }}"
       echo "prerelease: ${{ steps.last_release.outputs.prerelease }}"
+      echo "url: ${{ steps.last_release.outputs.url }}"
+      echo "html_url: ${{ steps.last_release.outputs.html_url }}"
 ```

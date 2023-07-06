@@ -27,6 +27,10 @@ outputs:
     description: 'Release is prerelease'
   release:
     description: 'Release is production release'
+  url:
+    description: 'API URL to release'
+  url:
+    description: 'HTML URL to release'  
 runs:
   using: "node18"
   main: "dist/index.js"
