@@ -29,7 +29,7 @@ outputs:
     description: 'Release is production release'
   url:
     description: 'API URL to release'
-  url:
+  html_url:
     description: 'HTML URL to release'  
 runs:
   using: "node18"
