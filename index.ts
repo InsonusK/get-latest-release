@@ -1,5 +1,6 @@
 import * as core from '@actions/core'
 import * as github from '@actions/github'
+import { components } from '@octokit/openapi-types/types'
 
 async function run(): Promise<void> {
     // Get input values
@@ -15,7 +16,7 @@ async function run(): Promise<void> {
     const octokit = github.getOctokit(myToken);
 
     // Load release list from GitHub
-    let releaseList = await octokit.repos.listReleases({
+    let releaseList = await octokit.rest.repos.listReleases({
         repo: github.context.repo.repo,
         owner: github.context.repo.owner,
         per_page: topList,
@@ -60,7 +61,7 @@ function setOutput(release: { id: number, tag_name: string, created_at: string, 
  * Write debug
  * @param release - founded release
  */
-function WriteDebug(release: { id: number, tag_name: string, created_at: string, draft: boolean, prerelease: boolean, name: string }): void {
+function WriteDebug(release: components["schemas"]["release"]): void {
     core.debug(`id: ${release.id}`);
     core.debug(`name: ${release.name}`)
     core.debug(`tag_name: ${release.tag_name}`);
